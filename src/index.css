@@ -1,1 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&family=Jersey+25&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --font-jersey-10: "Jersey 10", sans-serif;
+  --font-jersey-15: "Jersey 15", sans-serif;
+  --font-jersey-25: "Jersey 25", sans-serif;
+  /* Colores */
+  --color-background: #F7F1EE;
+  --color-title: #E0525E;
+  --color-primary: #8F524D;
+  --color-secondary: #9FBDC9;
+  --color-tertiary: #EEAB29;
+}
+
+
+

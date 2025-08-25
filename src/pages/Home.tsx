@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import bg from "../assets/background-image.png";
 import fairy from "../assets/fairy.png";
 import narwhal from "../assets/Narwhal.png";
 import dragon from "../assets/dragon.png";
+import Players from "../components/modals/Players";
+
 
 const Home: React.FC = () => {
+    const [playerModal, setplayerModal] = useState<boolean>(false)
   return (
     <div
       className="h-full w-full flex items-center"
@@ -41,14 +44,14 @@ const Home: React.FC = () => {
           </p>
 
           <div className="mt-12 flex gap-8">
-            <button className="bg-white rounded-2xl shadow-lg p-6 w-50 h-50 flex flex-col items-center justify-center">
+            <button className="bg-white rounded-2xl shadow-lg p-6 w-50 h-50 flex flex-col items-center justify-center" onClick={()=> setplayerModal(true)}>
               <img
                 src={narwhal}
                 alt="Ilustración"
                 className="w-[100px] max-w-full h-auto"
               />
               <div className="w-20 h-20 bg-center bg-contain" />
-              <span className="mt-3 text-sm text-primary font-jersey-25 text-[31px]">
+              <span className="mt-3 text-sm text-primary font-jersey-25 text-[31px]" >
                 Jugador
               </span>
             </button>
@@ -77,6 +80,9 @@ const Home: React.FC = () => {
         </div>
 
       </div>
+      {playerModal &&(
+        <Players playerModal={playerModal}setPlayerModal={setplayerModal}/>
+      )}
     </div>
   );
 };

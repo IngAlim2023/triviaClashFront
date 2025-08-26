@@ -1,6 +1,8 @@
 import React from "react";
 import Narwhal from "../../assets/Narwhal.png";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import socket from "../../services/socket";
+import useGameContext from "../../context/GameHook";
 
 interface Modales{
     playerModal: boolean,
@@ -14,10 +16,14 @@ interface Inputs{
 }
 
 const Players: React.FC<Modales> = ({playerModal, setPlayerModal}) => {
+
+    const { name, setName} = useGameContext();
+
     const {register, handleSubmit} = useForm<Inputs>()
 
     const onSubmit:SubmitHandler<Inputs> = async (data) =>{
-        console.log(data)
+      //Aquí vamos a registrar un usuario:  
+      socket.emit("newUser", data.nombre);
     }
   return (
     <div className="flex w-screen min-h-screen bg-background/60 justify-center items-center fixed inset-0">

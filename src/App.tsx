@@ -5,6 +5,7 @@ import useGameContext from './context/GameHook'
 import { useEffect } from 'react'
 import socket from './services/socket'
 import type { DataUsers } from './context/GameContext'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
   const {users, setUsers} = useGameContext();
@@ -23,6 +24,7 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Home/>}/>
     </Routes>
+    <Toaster/>
    </Router>
   )
 }

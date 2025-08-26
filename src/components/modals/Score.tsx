@@ -29,7 +29,6 @@ const Score: React.FC<Props> = ({setScoreModal}) => {
     loadData();
   }, []);
 
-  console.log(data);
   return (
     <div className="flex w-screen min-h-screen bg-background/60 justify-center items-center fixed inset-0">
       <div className="flex flex-col bg-white p-6 rounded-2xl w-full max-w-md md:max-w-lg lg:max-w-xl">

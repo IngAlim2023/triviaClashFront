@@ -8,6 +8,7 @@ import type { DataRooms, DataUsers } from "./context/GameContext";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./pages/NotFound";
 import ScreenGame from "./pages/ScreenGame";
+import Room from "./pages/Room";
 
 const App = () => {
   const { setUsers, setRooms } = useGameContext();
@@ -29,7 +30,8 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/juego" element={<ScreenGame />} />
+        <Route path="/game/:id" element={<ScreenGame />} />
+        <Route path="/room/:id" element={<Room />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster position="bottom-right" reverseOrder={false} />

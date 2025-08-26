@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dragon from "../../assets/Dragon.png";
+import { nanoid } from "nanoid";
 
 type QA = {
   id: string;
@@ -21,7 +22,7 @@ const TIMES = [30, 45, 60, 90, 120];
 
 const AddQuestionsModal: React.FC<Props> = ({
   open,
-  roomCode = "AB12",
+  roomCode,
   onClose,
   onSave,
   onStart,
@@ -31,7 +32,6 @@ const AddQuestionsModal: React.FC<Props> = ({
   const [correct, setCorrect] = useState(0);
   const [timeSec, setTimeSec] = useState<number>(30);
   const [list, setList] = useState<QA[]>([]);
-  
 
   if (!open) return null;
 
@@ -48,7 +48,7 @@ const AddQuestionsModal: React.FC<Props> = ({
   const save = () => {
     if (!canSave) return;
     const qa: QA = {
-      id: crypto.randomUUID(),
+      id: nanoid(5),
       question: question.trim(),
       answers: answers.map((a) => a.trim()),
       correct,
@@ -62,7 +62,7 @@ const AddQuestionsModal: React.FC<Props> = ({
     setCorrect(0);
     setTimeSec(30);
   };
-//   console.log(rooms);
+  
   return (
     <div className="fixed inset-0 z-50 flex min-h-screen w-screen items-center justify-center bg-background/60 p-4 backdrop-blur-sm">
       <div className="relative w-full max-w-5xl rounded-2xl border border-black/5 bg-white p-6 shadow-xl">
@@ -182,18 +182,6 @@ const AddQuestionsModal: React.FC<Props> = ({
           <aside className="rounded-xl border border-black/10 bg-white p-4">
             <div className="mb-3 flex items-center justify-between">
               <h4 className="text-sm font-semibold text-black/80">Preguntas</h4>
-              <button
-                onClick={save}
-                disabled={!canSave}
-                className={[
-                  "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-white",
-                  canSave
-                    ? "bg-btn-secondary hover:brightness-105"
-                    : "bg-btn-secondary/50 cursor-not-allowed",
-                ].join(" ")}
-              >
-                <span className="text-lg leading-none">＋</span> Nueva pregunta
-              </button>
             </div>
 
             <ul className="space-y-2">
@@ -239,13 +227,9 @@ const AddQuestionsModal: React.FC<Props> = ({
           <div className="flex gap-3">
             <button
               onClick={save}
-              disabled={!canSave}
-              className={[
-                "rounded-lg px-5 py-2 text-sm text-white",
-                canSave
-                  ? "bg-rose-400 hover:brightness-105"
-                  : "bg-rose-300/60 cursor-not-allowed",
-              ].join(" ")}
+              className={
+                "rounded-lg px-5 py-2 text-sm text-white bg-rose-400 hover:brightness-105 cursor-pointer"
+              }
             >
               Guardar pregunta
             </button>

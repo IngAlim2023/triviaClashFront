@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import dragon from "../../assets/dragon.png";
 import toast from "react-hot-toast";
 import socket from "../../services/socket";
+import { useNavigate } from "react-router-dom";
 
 interface Modal {
   setModeratorModal: (moderatorModal: boolean) => void;
@@ -10,6 +11,7 @@ interface Modal {
 
 const Moderator: React.FC<Modal> = ({ setModeratorModal }) => {
   const [codigo, setCodigo] = useState<string>("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     const cod = nanoid(6);
@@ -21,6 +23,7 @@ const Moderator: React.FC<Modal> = ({ setModeratorModal }) => {
     toast.success(() => (
       <div className="font-jersey-25">Sala Creada</div>
     ));
+    navigate(`/game/${codigo}`)
   };
 
   return (

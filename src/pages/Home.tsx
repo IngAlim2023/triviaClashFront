@@ -5,11 +5,13 @@ import narwhal from "../assets/Narwhal.png";
 import dragon from "../assets/dragon.png";
 import Players from "../components/modals/Players";
 import Moderator from "../components/modals/Moderator";
+import Score from "../components/modals/Score";
 
 
 const Home: React.FC = () => {
     const [playerModal, setplayerModal] = useState<boolean>(false)
     const [moderatorModal, setModeratorModal] = useState<boolean>(false)
+    const [scoreModal, setScoreModal] = useState<boolean>(false)
   return (
     <div
       className="h-full w-full flex items-center"
@@ -19,6 +21,7 @@ const Home: React.FC = () => {
         <button
           className="absolute top-6 right-6 bg-white rounded-xl shadow-md px-4 py-3 flex flex-col items-center justify-center"
           aria-label="Puntajes"
+          onClick={()=> setScoreModal(true)}
         >
           <img
             src={fairy}
@@ -87,6 +90,9 @@ const Home: React.FC = () => {
       )}
       {moderatorModal &&(
         <Moderator setModeratorModal={setModeratorModal}/>
+      )}
+      {scoreModal &&(
+        <Score setScoreModal={setScoreModal}/>
       )}
     </div>
   );

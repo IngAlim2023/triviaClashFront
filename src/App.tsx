@@ -7,6 +7,7 @@ import socket from "./services/socket";
 import type { DataRooms, DataUsers } from "./context/GameContext";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./pages/NotFound";
+import ScreenGame from "./pages/ScreenGame";
 
 const App = () => {
   const { setUsers, setRooms } = useGameContext();
@@ -28,6 +29,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/juego" element={<ScreenGame />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster position="bottom-right" reverseOrder={false} />

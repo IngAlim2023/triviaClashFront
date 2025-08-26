@@ -35,7 +35,7 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
       <div className="flex flex-col bg-white p-6 rounded-2xl w-full max-w-md md:max-w-lg lg:max-w-xl">
         <div className="flex justify-center items-center gap-4">
           <img src={Narwhal} alt="Narwhal" className="w-20 flex-initial" />
-          <h1 className="font-(family-name:--font-jersey-25) text-primary text-2xl">
+          <h1 className="font-jersey-25 text-primary text-2xl">
             Jugador
           </h1>
         </div>
@@ -46,7 +46,7 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
         ) : (
           <div className="bg-white p-6 rounded-2xl w-full max-w-sm md:max-w-md">
             <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-              <label className="font-(family-name:--font-jersey-25)">
+              <label className="font-jersey-25">
                 Cóidgo de sala
               </label>
               <Controller
@@ -60,7 +60,7 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
                     placeholder="Sala"
                     value={options.find(option => option.value === field.value)} 
                     onChange={(selected) => field.onChange(selected?.value)}
-                    className="w-4/8 font-(family-name:--font-jersey-25)"
+                    className="w-4/8 font-jersey-25"
                     classNames={{
                       control: () => "border rounded-sm p-1",
                       option: () => "cursor-pointer hover:bg-blue-100",
@@ -71,17 +71,17 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
               />
               <label
                 htmlFor="nombre"
-                className="font-(family-name:--font-jersey-25)"
+                className="mt-5 font-jersey-25"
               >
-                Código de sala
+                Escribe tu Nickname
               </label>
               <input
                 type="text"
                 placeholder="Escoge un apodo único"
-                className="font-(family-name:--font-jersey-25) border p-1 rounded-sm"
+                className="font-jersey-25 border p-1 rounded-sm"
                 {...register("nombre", { required: true })}
               />
-              <button className="font-(family-name:--font-jersey-25) bg-btn-primary text-amber-50 rounded-sm m-2 w-2/3">
+              <button className="font-jersey-25 bg-btn-primary text-amber-50 rounded-sm mt-2  w-1/3">
                 Unirme a la sala
               </button>
             </form>
@@ -90,7 +90,7 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
 
         <div className="m-2 flex flex-row-reverse">
           <button
-            className="font-(family-name:--font-jersey-25) rounded-xs bg-btn-secondary p-1 text-white text-sm"
+            className="font-jersey-25 rounded-sm bg-btn-secondary p-1 text-white text-x px-10"
             onClick={() => setPlayerModal(!playerModal)}
           >
             Volver

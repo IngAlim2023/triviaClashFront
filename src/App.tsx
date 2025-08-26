@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import socket from './services/socket'
 import type { DataUsers } from './context/GameContext'
 import { Toaster } from 'react-hot-toast'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   const {users, setUsers} = useGameContext();
@@ -23,8 +24,10 @@ const App = () => {
    <Router>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='*' element={<NotFound/>}/>
     </Routes>
-    <Toaster/>
+    <Toaster position="bottom-right"
+  reverseOrder={false}/>
    </Router>
   )
 }

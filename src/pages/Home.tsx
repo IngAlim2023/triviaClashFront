@@ -4,10 +4,12 @@ import fairy from "../assets/fairy.png";
 import narwhal from "../assets/Narwhal.png";
 import dragon from "../assets/dragon.png";
 import Players from "../components/modals/Players";
+import Moderator from "../components/modals/Moderator";
 
 
 const Home: React.FC = () => {
     const [playerModal, setplayerModal] = useState<boolean>(false)
+    const [moderatorModal, setModeratorModal] = useState<boolean>(false)
   return (
     <div
       className="h-full w-full flex items-center"
@@ -56,7 +58,7 @@ const Home: React.FC = () => {
               </span>
             </button>
 
-            <button className="bg-white rounded-2xl shadow-lg p-6 w-50 h-50 flex flex-col items-center justify-center">
+            <button className="bg-white rounded-2xl shadow-lg p-6 w-50 h-50 flex flex-col items-center justify-center" onClick={()=> setModeratorModal(true)}>
               <img
                 src={dragon}
                 alt="Ilustración"
@@ -82,6 +84,9 @@ const Home: React.FC = () => {
       </div>
       {playerModal &&(
         <Players playerModal={playerModal}setPlayerModal={setplayerModal}/>
+      )}
+      {moderatorModal &&(
+        <Moderator setModeratorModal={setModeratorModal}/>
       )}
     </div>
   );

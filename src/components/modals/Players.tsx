@@ -17,19 +17,20 @@ interface Inputs{
 
 const Players: React.FC<Modales> = ({playerModal, setPlayerModal}) => {
 
-    const { name, setName} = useGameContext();
+    const {setName} = useGameContext();
 
     const {register, handleSubmit} = useForm<Inputs>()
 
     const onSubmit:SubmitHandler<Inputs> = async (data) =>{
       //Aquí vamos a registrar un usuario:  
       socket.emit("newUser", data.nombre);
+      setName(data.nombre)
     }
   return (
     <div className="flex w-screen min-h-screen bg-background/60 justify-center items-center fixed inset-0">
-      <div className="flex flex-col bg-white p-6 rounded-2xl w-2/3">
+      <div className="flex flex-col bg-white p-6 rounded-2xl w-full max-w-md md:max-w-lg lg:max-w-xl">
         <div className="flex justify-center items-center gap-4">
-          <img src={Narwhal} alt="Narwhal" className="w-12 flex-initial" />
+          <img src={Narwhal} alt="Narwhal" className="w-20 flex-initial" />
           <h1 className="font-(family-name:--font-jersey-25) text-primary text-2xl">
             Jugador
           </h1>

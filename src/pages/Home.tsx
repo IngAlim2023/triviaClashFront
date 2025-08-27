@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import bg from "../assets/background-image.png";
 import fairy from "../assets/fairy.png";
 import narwhal from "../assets/Narwhal.png";
@@ -6,12 +6,30 @@ import dragon from "../assets/dragon.png";
 import Players from "../components/modals/Players";
 import Moderator from "../components/modals/Moderator";
 import Score from "../components/modals/Score";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Home: React.FC = () => {
-    const [playerModal, setplayerModal] = useState<boolean>(false)
-    const [moderatorModal, setModeratorModal] = useState<boolean>(false)
-    const [scoreModal, setScoreModal] = useState<boolean>(false)
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const [playerModal, setplayerModal] = useState<boolean>(false);
+    const [moderatorModal, setModeratorModal] = useState<boolean>(false);
+    const [scoreModal, setScoreModal] = useState<boolean>(false);
+
+    useEffect(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const st: any = location.state;
+      if (!st) return;
+
+      if (st.openPlayer) setplayerModal(true);
+      if (st.openModerator) setModeratorModal(true);
+
+      // Limpia el state para que no se vuelva a abrir al navegar
+      navigate(".", { replace: true, state: null });
+    }, [location.state, navigate]);
+
+
   return (
     <div
       className="h-full w-full flex items-center"

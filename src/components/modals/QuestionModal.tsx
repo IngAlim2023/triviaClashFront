@@ -89,7 +89,7 @@ const QuestionModal: React.FC<Props> = ({
         )}
 
         <header className="mb-6">
-          <h2 className="text-2xl font-bold tracking-tight text-black/50">
+          <h2 className="text-2xl font-jersey-25 tracking-tight text-black/100">
             <span className="block">{heading}</span>
             {headingSub && (
               <span className="block text-black/40">{headingSub}</span>
@@ -155,24 +155,4 @@ const QuestionModal: React.FC<Props> = ({
 };
 
 export default QuestionModal;
-
-
-// const [open, setOpen] = useState(true);
-
-{/* <QuestionModal
-  open={open}
-  heading="Responde todas las preguntas"
-  headingSub="que puedas"
-  question="¿Cuál es la capital de Rusia?"
-  options={[
-    { id: "berlin", label: "Berlin" },
-    { id: "moscu", label: "Moscú" },
-    { id: "paris", label: "París" },
-    { id: "suiza", label: "Suiza" },
-  ]}
-  timerSec={30}
-  onTimeout={() => console.log("Tiempo agotado")}
-  onPrev={() => console.log("Anterior")}
-  onNext={(answer) => console.log("Siguiente con:", answer)}
-/> */}
 

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Dragon from "../../assets/Dragon.png";
 import { nanoid } from "nanoid";
+import { FaCopy } from "@react-icons/all-files/fa/FaCopy";
+import toast from "react-hot-toast";
 
 type QA = {
   id: string;
   question: string;
   answers: string[]; // 4 opciones
   correct: number; // índice 0..3
-  timeSec: number; // 30, 45, 60...
+  timeSec: number; // duración de la pregunta
 };
 
 type Props = {
@@ -18,7 +20,7 @@ type Props = {
   onStart?: (all: QA[]) => void;
 };
 
-const TIMES = [30, 45, 60, 90, 120];
+const TIMES = [5, 10, 15, 20];
 
 const AddQuestionsModal: React.FC<Props> = ({
   open,
@@ -30,7 +32,7 @@ const AddQuestionsModal: React.FC<Props> = ({
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", "", "", ""]);
   const [correct, setCorrect] = useState(0);
-  const [timeSec, setTimeSec] = useState<number>(30);
+  const [timeSec, setTimeSec] = useState<number>(TIMES[0]); // 5s por defecto
   const [list, setList] = useState<QA[]>([]);
 
   if (!open) return null;
@@ -60,9 +62,27 @@ const AddQuestionsModal: React.FC<Props> = ({
     setQuestion("");
     setAnswers(["", "", "", ""]);
     setCorrect(0);
-    setTimeSec(30);
+    setTimeSec(TIMES[0]); // vuelve a 5s
   };
-  
+
+  const copyCode = async () => {
+    if (!roomCode) {
+      toast.error("No hay código de sala");
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(roomCode);
+      toast.success(() => (
+        <div className="font-jersey-25">
+          Código copiado
+          <div className="text-xs opacity-80">{roomCode}</div>
+        </div>
+      ));
+    } catch {
+      toast.error("No se pudo copiar el código");
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex min-h-screen w-screen items-center justify-center bg-background/60 p-4 backdrop-blur-sm">
       <div className="relative w-full max-w-5xl rounded-2xl border border-black/5 bg-white p-6 shadow-xl">
@@ -76,25 +96,17 @@ const AddQuestionsModal: React.FC<Props> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="rounded-lg bg-btn-secondary/90 px-3 py-1.5 text-sm text-white">
-              {roomCode}
-            </span>
-            {onClose && (
-              <button
-                onClick={onClose}
-                className="rounded-full p-2 text-black/50 hover:bg-black/5"
-                aria-label="Cerrar"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5">
-                  <path
-                    d="M6 6l12 12M18 6L6 18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-            )}
+            <button
+              onClick={copyCode}
+              className="flex items-center gap-2 rounded-lg bg-btn-secondary/90 px-3 py-1.5 text-sm text-white shadow-sm transition hover:brightness-105 active:scale-[0.98]"
+              title="Copiar código de sala"
+              type="button"
+            >
+              <span className="font-jersey-25 text-xl tracking-wider">
+                {roomCode ?? "-"}
+              </span>
+              <FaCopy style={{ width: 20, height: 20 }} />
+            </button>
           </div>
         </div>
 
@@ -127,7 +139,7 @@ const AddQuestionsModal: React.FC<Props> = ({
                     className={[
                       "grid h-6 w-6 place-items-center rounded-sm border-2",
                       correct === i
-                        ? "border-emerald-600 bg-emerald-400"
+                        ? "border-btn-secondary bg-secondary"
                         : "border-black/40 bg-white hover:bg-black/5",
                     ].join(" ")}
                     title="Marcar como correcta"
@@ -135,7 +147,7 @@ const AddQuestionsModal: React.FC<Props> = ({
                     {correct === i && (
                       <svg
                         viewBox="0 0 24 24"
-                        className="h-4 w-4 text-black"
+                        className="h-4 w-4 text-white"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="3"
@@ -188,22 +200,11 @@ const AddQuestionsModal: React.FC<Props> = ({
               {list.map((q) => (
                 <li
                   key={q.id}
-                  className="flex items-start justify-between gap-2 rounded-md bg-black/[0.03] px-3 py-2"
+                  className="flex items-start justify-between gap-2 rounded-md bg-btn-secondary/[0.13] hover:bg-btn-secondary/[0.21] px-3 py-2"
                 >
                   <span className="line-clamp-1 text-sm text-black/80">
                     {q.question}
                   </span>
-                  <button
-                    className="rounded p-1 text-black/50 hover:bg-black/10"
-                    title="Editar (placeholder)"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-4 w-4">
-                      <path
-                        d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </button>
                 </li>
               ))}
               {list.length === 0 && (

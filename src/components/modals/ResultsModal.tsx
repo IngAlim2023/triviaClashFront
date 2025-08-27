@@ -13,7 +13,7 @@ type Props = {
   totalCorrect: number;
   totalQuestions: number;
   timeUsedSec: number;
-  pointsPerCorrect?: number; // default 10
+  pointsPerCorrect?: number;
   correctItems: ResultItem[];
   wrongItems: ResultItem[];
   onBack: () => void;

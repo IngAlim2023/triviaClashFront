@@ -143,16 +143,3 @@ const ModeratorRoomModal: React.FC<Props> = ({
 };
 
 export default ModeratorRoomModal;
-
-// // Para llamarl en el home
-// <ModeratorRoomModal
-//   open={open}
-//   roomCode="AB12"
-//   players={[
-//     { id: "1", name: "Macarron Marron" },
-//     { id: "2", name: "Juan Luis Guerra" },
-//   ]}
-//   onEdit={() => console.log("Editar lista")}
-//   onStart={() => console.log("Iniciar partida")}
-//   onClose={() => setOpen(true)}
-// />;

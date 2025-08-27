@@ -1,31 +1,31 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { loadScore } from "../../services/score";
 
-// ⬇️ Import estático de assets (como los otros)
+
 import batImg from "../../assets/bat.png";
 import chimeraImg from "../../assets/chimera.png";
 import echidnaImg from "../../assets/echidna.png";
-import madreMonteImg from "../../assets/madre-monte.png"; // enum: madreMonte → archivo: madre-monte.png
+import madreMonteImg from "../../assets/madre-monte.png"; 
 import scarecrowImg from "../../assets/scarecrow.png";
 import summonerImg from "../../assets/summoner.png";
-import dragon2Img from "../../assets/dragon-2.png"; // enum: dragon2 → archivo: dragon-2.png
+import dragon2Img from "../../assets/dragon-2.png"; 
 import gryphonImg from "../../assets/gryphon.png";
-import BasiliskImg from "../../assets/Basilisk.png"; // enum: Basilisk (con mayúscula en enum y archivo)
+import BasiliskImg from "../../assets/Basilisk.png"; 
 
-// Fallback por si llega un valor desconocido
+
 import horseFallback from "../../assets/player-horse.png";
 
 type ScoreData = {
   nombre: string;
   score: number;
-  icono?: string; // valores del enum del back
+  icono?: string; 
 };
 
 interface Props {
   setScoreModal: (val: boolean) => void;
 }
 
-// Mapa EXACTO a los valores del enum del back
+
 const ICONS: Record<string, string> = {
   gryphon: gryphonImg,
   chimera: chimeraImg,
@@ -40,7 +40,7 @@ const ICONS: Record<string, string> = {
 
 const getIconSrc = (name?: string) => {
   if (!name) return horseFallback;
-  // match exacto del enum; si no existe, usa fallback
+  
   return ICONS[name] ?? horseFallback;
 };
 
@@ -52,7 +52,7 @@ const Score: React.FC<Props> = ({ setScoreModal }) => {
     const load = async () => {
       try {
         const res = await loadScore();
-        // soporta { data: [...] } o [...]
+        
         const rows: ScoreData[] = Array.isArray(res) ? res : res?.data ?? [];
         setData(rows);
       } finally {

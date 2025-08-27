@@ -7,9 +7,9 @@ import toast from "react-hot-toast";
 type QA = {
   id: string;
   question: string;
-  answers: string[]; // 4 opciones
-  correct: number; // índice 0..3
-  timeSec: number; // duración de la pregunta
+  answers: string[];
+  correct: number;
+  timeSec: number; 
 };
 
 type Props = {

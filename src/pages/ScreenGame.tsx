@@ -6,8 +6,8 @@ import socket from "../services/socket";
 import toast from "react-hot-toast";
 
 const ScreenGame: React.FC = () => {
-  const [open, setOpen] = useState(true); // modal de crear preguntas
-  const [nextOpen, setNextOpen] = useState(false); // modal "qué quieres hacer ahora"
+  const [open, setOpen] = useState(true);
+  const [nextOpen, setNextOpen] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const ScreenGame: React.FC = () => {
     setOpen(false);
     setNextOpen(true);
 
-    // Notificación "Juego Iniciado"
+    
     toast.success(() => <div className="font-jersey-25">Juego Iniciado</div>);
   };
 

@@ -3,9 +3,9 @@ import Dragon from "../../assets/dragon.png";
 
 type Props = {
   open: boolean;
-  onCreateNew?: () => void; // crear nueva trivia
-  onPlay?: () => void; // ir a jugar
-  onBack?: () => void; // volver
+  onCreateNew?: () => void;
+  onPlay?: () => void; 
+  onBack?: () => void; 
   title?: string;
 };
 

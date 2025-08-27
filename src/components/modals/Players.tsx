@@ -64,7 +64,7 @@ const Players: React.FC<Modales> = ({ playerModal, setPlayerModal }) => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     socket.emit("newUser", data.nombre);
     setName(data.nombre);
-    setAvatar(avatar); // << guardamos el avatar globalmente
+    setAvatar(avatar);
     navigate(`/room/${data.sala}`);
   };
 

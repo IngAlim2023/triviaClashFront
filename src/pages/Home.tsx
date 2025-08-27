@@ -18,14 +18,14 @@ const Home: React.FC = () => {
     const [scoreModal, setScoreModal] = useState<boolean>(false);
 
     useEffect(() => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      
       const st: any = location.state;
       if (!st) return;
 
       if (st.openPlayer) setplayerModal(true);
       if (st.openModerator) setModeratorModal(true);
 
-      // Limpia el state para que no se vuelva a abrir al navegar
+      
       navigate(".", { replace: true, state: null });
     }, [location.state, navigate]);
 

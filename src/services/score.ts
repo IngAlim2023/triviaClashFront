@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3333";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const loadScore = async () => {
   const data = await fetch(`${API_URL}/score`, {

@@ -1,6 +1,6 @@
-import { io } from "socket.io-client"
-
+import { io } from "socket.io-client";
+const API_URL = import.meta.env.VITE_API_URL;
 // Conectar al backend de Adonis
-const socket = io("http://localhost:3333")
+const socket = io(API_URL);
 
-export default socket
+export default socket;
